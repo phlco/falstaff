@@ -11,4 +11,4 @@
 module.exports = (robot) ->
 
   robot.respond /hello/i, (msg) ->
-    msg.send "How now, my sweet creature of bombast!"
+    msg.send "How now, my sweet creature of bombast?"
