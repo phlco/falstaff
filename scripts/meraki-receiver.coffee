@@ -17,7 +17,8 @@ module.exports = (robot) ->
   # When it sends the presence information, it will also send the secret.
   robot.router.post '/meraki', (req, res) ->
     try
-      jsoned = JSON.parse(req.body.data)
+      # jsoned = JSON.parse(req.body.data)
+      jsoned = req.body.data
       if jsoned.secret is secret
         console.log("valid data")
         console.log(req.body)
