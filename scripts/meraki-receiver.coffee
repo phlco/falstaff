@@ -1,10 +1,10 @@
 # https://docs.meraki.com/display/MR/Location+API
 
 # Secret that you chose in the Meraki dashboard
-secret = "xxxxxx"
+secret = "y7WALfkjPfQMgtXZtW"
 
 # Validator string that is shown in the Meraki dashboard
-validator = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+validator = "ef964744f5a30a7b5f41ec73482712c26eb4a5fa"
 
 module.exports = (robot) ->
 
