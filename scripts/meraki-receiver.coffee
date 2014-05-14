@@ -18,7 +18,8 @@ module.exports = (robot) ->
   robot.router.post '/meraki', (req, res) ->
     try
       # jsoned = JSON.parse(req.body.data)
-      jsoned = req.body.data
+      console.log(req.body)
+      jsoned = req.body
       if jsoned.secret is secret
         console.log("valid data")
         console.log(req.body)
