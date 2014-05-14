@@ -1,5 +1,6 @@
 [
   "redis-brain.coffee",
   "help",
-  "greet"
+  "greet",
+  "meraki-receiver"
 ]
