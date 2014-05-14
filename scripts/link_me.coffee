@@ -8,7 +8,7 @@ RAILSCASTS_BASE_URL = "http://railscasts.com/"
 module.exports = (robot) ->
 
   robot.hear /schedule (.*) for (.*)/i, (msg) ->
-    dates = robot.brain.dates or= []
+    dates = robot.brain.dates or []
     date =
       name: msg.match[1]
       time: msg.match[2]
@@ -17,7 +17,7 @@ module.exports = (robot) ->
 
   robot.hear /upcoming events/i, (msg) ->
     msg.emote "remembering"
-    dates = robot.brain.dates or= []
+    dates = robot.brain.dates
     for date in dates
       msg.send "What: #{date.name} : When #{date.time}"
 
