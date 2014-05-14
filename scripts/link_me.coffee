@@ -7,8 +7,11 @@ RAILSCASTS_BASE_URL = "http://railscasts.com/"
 # Indicate that you are defining a script
 module.exports = (robot) ->
 
+  robot.brain.on 'loaded', =>
+    console.log("brain loaded")
+    robot.brain.data.dates or= []
+
   robot.hear /schedule (.*) for (.*)/i, (msg) ->
-    dates = robot.brain.dates or= []
     date =
       name: msg.match[1]
       time: msg.match[2]
@@ -16,6 +19,7 @@ module.exports = (robot) ->
     msg.emote "Remembering..."
 
   robot.hear /upcoming events/i, (msg) ->
+    return unless robot.brain.data.dates?
     msg.emote "remembering"
     dates = robot.brain.dates
     for date in dates
