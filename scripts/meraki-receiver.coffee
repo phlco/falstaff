@@ -1,3 +1,9 @@
+# Description:
+# Dependencies:
+# Commands:
+# Notes:
+# Author:
+
 # https://docs.meraki.com/display/MR/Location+API
 
 # Secret that you chose in the Meraki dashboard

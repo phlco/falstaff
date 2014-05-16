@@ -1,3 +1,9 @@
+# Description:
+# Dependencies:
+# Commands:
+# Notes:
+# Author:
+
 # Testing Authorized Users
 
 module.exports = (robot) ->

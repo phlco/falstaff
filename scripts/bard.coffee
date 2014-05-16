@@ -1,3 +1,9 @@
+# Description:
+# Dependencies:
+# Commands:
+# Notes:
+# Author:
+
 module.exports = (robot) ->
 
   robot.respond /woo me/i, (msg) ->

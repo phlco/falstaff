@@ -1,3 +1,9 @@
+# Description:
+# Dependencies:
+# Commands:
+# Notes:
+# Author:
+
 module.exports = (robot) ->
 
   # Event fired when brain is loaded

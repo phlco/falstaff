@@ -1,3 +1,9 @@
+# Description:
+# Dependencies:
+# Commands:
+# Notes:
+# Author:
+
 # Include required libraries
 # Cheerio is used to parse the html and extract data
 cheerio = require('cheerio')
