@@ -1,3 +1,10 @@
+# Description:
+# Dependencies:
+# Configuration:
+# Commands:
+# Notes:
+# Author:
+
 # GitHubApi = require("github")
 _ = require("underscore")
 
