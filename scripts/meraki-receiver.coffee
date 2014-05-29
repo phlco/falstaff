@@ -1,10 +1,20 @@
 # Description:
+#
 # Dependencies:
+#
 # Commands:
+#
 # Notes:
+#   Requires http listening.
+#   Add `export PORT=8080` to `bin/hubot` config
+#   Be sure to set environmental variables for
+#   `MERAKI_SECRET` and `MERAKI_VALIDATOR`
+#   https://docs.meraki.com/display/MR/Location+API
+#
 # Author:
-
-# https://docs.meraki.com/display/MR/Location+API
+#   phlco
+#   Adapted from https://docs.meraki.com/download/attachments/12255364/merakiReceiver.js.zip?version=1&modificationDate=1369861796512&api=v2
+#   https://coderwall.com/p/awus5w
 
 # Secret that you chose in the Meraki dashboard
 secret = process.env.MERAKI_SECRET
@@ -14,8 +24,8 @@ validator = process.env.MERAKI_VALIDATOR
 
 module.exports = (robot) ->
 
-  # Meraki will send a HTTP GET request to test the URL and expect to see the
-  # validator as a response.
+  # Meraki will send a HTTP GET request to test the URL
+  # and expect to see the validator as a response.
   robot.router.get '/meraki', (req, res) ->
     console.log("sending validation")
     res.send(validator)
