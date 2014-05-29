@@ -31,7 +31,9 @@ module.exports = (robot) ->
   # and expect to see the validator as a response.
   robot.router.get '/meraki', (req, res) ->
     console.log("sending validation")
-    res.send(validator)
+    res.writeHead 200, {'Content-Type': 'text/plain'}
+    res.end validator
+    # res.send(validator)
 
   # When it sends the presence information, it will also send the secret.
   robot.router.post '/meraki', (req, res) ->
