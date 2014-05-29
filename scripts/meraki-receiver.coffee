@@ -53,8 +53,9 @@ module.exports = (robot) ->
         # rssi: "28"               # maximum signal strength
         # TODO (phlco) use underscore to check for my mac address?
         # find mac address if last seen is today then you're here
-        user = _.findWhere(payload, { client_mac: "54:26:96:d6:71:c7"})
-        console.log("Philco is here. Last seen #{user.last_seen}") if user
+        user = _.findWhere(payload, { client_mac: "54:26:96:35:0B:C8"})
+        if user?
+          console.log("Philco is here. Last seen #{user.last_seen}")
       else
         console.log("invalid secret from #{req.connection.remoteAddress}")
     catch error
