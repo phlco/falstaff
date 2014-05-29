@@ -2,5 +2,6 @@
 
 npm install
 export PATH="node_modules/.bin:node_modules/hubot/node_modules/.bin:$PATH"
-# export PORT=8080
+# https://coderwall.com/p/awus5w
+export PORT=8080
 exec node_modules/.bin/hubot "$@"
