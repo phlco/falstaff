@@ -19,14 +19,13 @@
 #   Adapted from https://docs.meraki.com/download/attachments/12255364/merakiReceiver.js.zip?version=1&modificationDate=1369861796512&api=v2
 #   https://coderwall.com/p/awus5w
 
+_ = require "underscore"
+
 # Secret that you chose in the Meraki dashboard
 secret = process.env.MERAKI_SECRET
 
 # Validator string that is shown in the Meraki dashboard
 validator = process.env.MERAKI_VALIDATOR
-
-# underscore
-_ = require('underscore')
 
 module.exports = (robot) ->
 
@@ -53,9 +52,9 @@ module.exports = (robot) ->
         # rssi: "28"               # maximum signal strength
         # TODO (phlco) use underscore to check for my mac address?
         # find mac address if last seen is today then you're here
-        user = _.findWhere(payload, { client_mac: "54:26:96:35:0B:C8"})
-        if user?
-          console.log("Philco is here. Last seen #{user.last_seen}")
+        # user = _.findWhere(payload, { client_mac: "54:26:96:35:0B:C8"})
+        # if user?
+        #   console.log("Philco is here. Last seen #{user.last_seen}")
       else
         console.log("invalid secret from #{req.connection.remoteAddress}")
     catch error
