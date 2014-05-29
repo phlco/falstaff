@@ -43,7 +43,7 @@ module.exports = (robot) ->
       jsoned = req.body
       if jsoned.secret is secret
         console.log("valid data")
-        console.log(req.body)
+        console.log(req.body.data)
       else
         console.log("invalid secret from #{req.connection.remoteAddress}")
     catch error
