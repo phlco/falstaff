@@ -4,6 +4,9 @@
 #
 # Commands:
 #
+#   GET http://HUBOT_URL:PORT/meraki
+#   POST http://HUBOT_URL:PORT/meraki
+#
 # Notes:
 #   Requires http listening.
 #   Add `export PORT=8080` to `bin/hubot` config
