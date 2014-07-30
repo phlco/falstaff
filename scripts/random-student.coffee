@@ -19,10 +19,7 @@
 module.exports = (robot) ->
 
   robot.respond /random student/i, (msg)->
-    list = msg.match[1].trim()
-    if !lists[list]?
-      msg.send("That's not a valid list.")
-    else if list.length == 0
+    if student_roster.length == 0
       msg.send("Provide a list.")
     else
       msg.send(random_student(student_roster))
