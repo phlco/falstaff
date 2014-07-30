@@ -1,3 +1,13 @@
+# Description:
+# Dependencies:
+# Commands:
+#   hubot queue me - Adds a student to the queue
+#   hubot unqueue me - Removes a student from the queue
+#   hubot pop student - Removes a student from the queue and alerts caller
+#   hubot queue length
+# Notes:
+# Author:
+
 util   = require 'util'
 _      = require 'underscore'
 moment = require 'moment'
@@ -24,11 +34,11 @@ module.exports = (robot) ->
     robot.brain.data.instructorQueue.shift()
 
   robot.respond /q(ueue)? me$/i, (msg) ->
-    msg.reply "Tut! Wherefore? queue me for [reason]"
+    msg.reply "usage: bot queue me for [reason]"
 
   robot.respond /q(ueue)? me(.+)/i, (msg) ->
     unless msg.match[2].match /^[ ]*for/i
-      msg.reply "Tut! Wherefore? queue me for [reason]"
+      msg.reply "usage: bot queue me for [reason]"
 
   robot.respond /q(ueue)? me for (.+)/i, (msg) ->
     name = msg.message.user.mention_name || msg.message.user.name
