@@ -2,5 +2,6 @@
   "redis-brain.coffee",
   "help",
   "greet",
-  "meraki-receiver"
+  "meraki-receiver",
+  "random-student"
 ]
