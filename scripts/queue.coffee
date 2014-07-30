@@ -1,12 +1,16 @@
 # Description:
-# Dependencies:
+#   A queuing system for TAs to manage students during office hours
+#
 # Commands:
 #   hubot queue me - Adds a student to the queue
 #   hubot unqueue me - Removes a student from the queue
 #   hubot pop student - Removes a student from the queue and alerts caller
 #   hubot queue length
+#
 # Notes:
+#
 # Author:
+#   adapted from Omar Delarosa by Philco
 
 util   = require 'util'
 _      = require 'underscore'
