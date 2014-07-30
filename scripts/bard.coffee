@@ -14,3 +14,6 @@ module.exports = (robot) ->
 
   robot.topic (msg) ->
     msg.send "#{msg.message.text}? That's a Paddlin'"
+
+  robot.respond /play on!/, (msg) ->
+    msg.reply "https://www.youtube.com/watch?v=5SvEttR6HTY"
