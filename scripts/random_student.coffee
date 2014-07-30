@@ -9,6 +9,8 @@
 #
 # Commands:
 #   hubot random student <list> -- pick a random student from the given list.
+#   TODO: break up students into groups of n
+#   TODO: load students from json or hipchat
 #
 # Author:
 #   sumeetjain
@@ -16,7 +18,7 @@
 
 module.exports = (robot) ->
 
-  robot.respond /random student (.*)/i, (msg)->
+  robot.respond /random student/i, (msg)->
     list = msg.match[1].trim()
     if !lists[list]?
       msg.send("That's not a valid list.")
