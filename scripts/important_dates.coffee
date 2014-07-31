@@ -16,6 +16,7 @@
 #
 # Author:
 #   phlco
+
 important_dates = require('./class_config').important_dates
 
 module.exports = (robot) ->
