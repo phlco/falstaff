@@ -13,7 +13,7 @@ module.exports = (robot) ->
     console.log(bard)
 
   robot.topic (msg) ->
-    msg.send "#{msg.message.text}? That's a Paddlin'"
+    msg.send "Hear ye! Hear ye! #{msg.message.text}"
 
   robot.respond /play on!/, (msg) ->
     msg.reply "https://www.youtube.com/watch?v=5SvEttR6HTY"

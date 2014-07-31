@@ -1,6 +1,9 @@
 # Description:
 #   Important course dates
 #
+# Dependencies:
+#   class_config.json
+#
 # Configuration:
 #   Important dates are stored in the important_dates object
 #
@@ -13,6 +16,7 @@
 #
 # Author:
 #   phlco
+important_dates = require('./class_config').important_dates
 
 module.exports = (robot) ->
   robot.respond /when (is|was) the (.*) day of class/i, (msg) ->
@@ -22,24 +26,4 @@ module.exports = (robot) ->
   robot.respond /vacation (days|dates)/i, (msg) ->
     msg.send important_dates.days_off.join('\n')
 
-important_dates =
-  prework: [
-    "July 18, 2014"
-    "July 31, 2014"
-  ]
-  installfest: "July 31, 2014"
-  last_day: "October 30th, 2014"
-  first_day: "Monday August 4, 2014"
-  days_off: [
-    "September 1, 2014"
-    "September 25, 2014"
-    "September 26, 2014"
-    "October 13, 2014"
-  ]
-  labs: [
-    "August 29, 2014"
-    "October 3, 2014"
-  ]
-  projects: [
-    "September 2, 2014"
-  ]
+
