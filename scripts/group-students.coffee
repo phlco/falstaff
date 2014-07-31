@@ -16,7 +16,7 @@
 _ = require('underscore')
  # node attempts to load the filename with the added extension of
  # .js, .json, and then .node.
-student_roster = require('./class_config').student_roster
+student_roster = require('../class_config').student_roster
 
 module.exports = (robot) ->
   robot.respond /groups of (.*)/i, (msg) ->
