@@ -1,17 +1,23 @@
 # Description:
 #   Important course dates
 #
+# Configuration:
+#   Important dates are stored in the important_dates object
+#
 # Commands:
 #   hubot when is the last day of class
 #   hubot when is the first day of class
 #   hubot vacation dates
 #
 # Notes:
-#   These commands are grabbed from comment blocks at the top of each file.
+#
+# Author:
+#   phlco
 
 module.exports = (robot) ->
   robot.respond /when (is|was) the (.*) day of class/i, (msg) ->
     console.log(msg.match)
+    http.
     emit = important_dates["#{msg.match[2].toLowerCase()}_day"]
     msg.send emit
 
