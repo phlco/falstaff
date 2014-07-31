@@ -16,6 +16,8 @@
 #   sumeetjain
 #   adapted by phlco
 
+_ = require('underscore')
+
 module.exports = (robot) ->
 
   robot.respond /random student/i, (msg)->
@@ -27,13 +29,27 @@ module.exports = (robot) ->
     else
       msg.send(random_student(student_roster))
 
+  robot.respond /groups of (.*)/i, (msg) ->
+    number = msg.match[1]
+    console.log(number)
+    group_students_by number, (student_groups) ->
+      msg.send student_groups.join('\n\n')
+
+group_students_by = (number, cb) ->
+  groups = _.groupBy(student_roster, (element, index) -> Math.floor index/number)
+  grouped = _.toArray(groups)
+  if grouped[grouped.length - 1].length is 1
+    tail = grouped.pop()
+    grouped[grouped.length - 1].push tail...
+  cb(grouped)
+
 random_student = (student_roster) ->
   random_index = (Math.random() * student_roster.length) >> 0
   student_roster[random_index]
 
 student_roster = [
   "Evan Berg",
-  "Robert Silverblatt ",
+  "Robert Silverblatt",
   "Michael Coniaris",
   "Jared Norcott",
   "Jessica Franko",

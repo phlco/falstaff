@@ -16,8 +16,6 @@
 
 module.exports = (robot) ->
   robot.respond /when (is|was) the (.*) day of class/i, (msg) ->
-    console.log(msg.match)
-    http.
     emit = important_dates["#{msg.match[2].toLowerCase()}_day"]
     msg.send emit
 
