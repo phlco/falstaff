@@ -9,40 +9,13 @@
 #
 # Commands:
 #   hubot random student <list> -- pick a random student from the given list.
-#   TODO: break up students into groups of n
 #   TODO: load students from json or hipchat
 #
 # Author:
 #   sumeetjain
 #   adapted by phlco
 
-student_roster = [
-  "Evan Berg",
-  "Robert Silverblatt ",
-  "Michael Coniaris",
-  "Jared Norcott",
-  "Jessica Franko",
-  "Andrew Fritz",
-  "Aaron Gregory",
-  "Michael Hall",
-  "Janine Harper",
-  "Erica Kantor",
-  "Michael Larkin",
-  "Sarah McDonald",
-  "Jennifer Nguyen",
-  "Ariel Olin",
-  "Ryan Parks",
-  "Gray Reinhard",
-  "Maria Schettino",
-  "Will Schjang",
-  "Neil Sidhu",
-  "Yinan Song",
-  "Ade Ugbogbo",
-  "Jacqueline Williams",
-  "Carrie Xu",
-  "Anastasia Konecky",
-  "Thomas Truong"
-]
+student_roster = require('../class_config').student_roster
 
 module.exports = (robot) ->
 
