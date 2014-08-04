@@ -24,5 +24,8 @@ module.exports = (robot) ->
     emit = important_dates["#{msg.match[2].toLowerCase()}_day"]
     msg.send emit
 
-  robot.respond /vacation (days|dates)/i, (msg) ->
+  robot.respond /vacation (vacation dates|days)/i, (msg) ->
     msg.send important_dates.days_off.join('\n')
+
+  robot.respond /(lab days|labs)i/, (msg) ->
+    msg.send important_dates.labs.join('\n')
