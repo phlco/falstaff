@@ -1,11 +1,8 @@
 # Description:
-#   Utility commands surrounding Hubot uptime.
-#
+# Dependencies:
 # Commands:
-#   hubot ping - Reply with pong
-#   hubot echo <text> - Reply back with <text>
-#   hubot time - Reply with current time
-#   hubot die - End hubot process
+# Notes:
+# Author:
 
 module.exports = (robot) ->
   robot.respond /PING$/i, (msg) ->

@@ -11,6 +11,7 @@
 #   hubot when is the last day of class
 #   hubot when is the first day of class
 #   hubot vacation dates
+#   hubot office hours
 #
 # Notes:
 #

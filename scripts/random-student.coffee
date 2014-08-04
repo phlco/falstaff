@@ -8,8 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot random student <list> -- pick a random student from the given list.
-#   TODO: load students from json or hipchat
+#   hubot random student
 #
 # Author:
 #   sumeetjain

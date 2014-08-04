@@ -1,9 +1,8 @@
 # Description:
-#   Inspect the data in redis easily
-#
+# Dependencies:
 # Commands:
-#   hubot show users - Display all users that hubot knows about
-#   hubot show storage - Display the contents that are persisted in the brain
+# Notes:
+# Author:
 
 
 Util = require "util"
