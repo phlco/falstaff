@@ -1,6 +1,8 @@
-# _ = require('underscore')
-
-# student_roster = require('../class_config').student_roster
+# Description:
+#
+# Commands:
+#
+# Events:
 
 module.exports = (robot) ->
 
