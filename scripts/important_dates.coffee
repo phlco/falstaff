@@ -29,3 +29,6 @@ module.exports = (robot) ->
 
   robot.respond /(lab days|labs)i/, (msg) ->
     msg.send important_dates.labs.join('\n')
+
+  robot.respond /office hours/i, (msg) ->
+    msg.send important_dates.office_hours.join('\n')
