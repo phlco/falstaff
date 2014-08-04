@@ -1,1 +1,1 @@
-web: bin/hubot --adapter hipchat --name Falstaff
+hubot: bin/hubot --adapter hipchat --name Falstaff
