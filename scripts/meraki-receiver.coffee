@@ -1,23 +1,8 @@
 # Description:
-#
 # Dependencies:
-#
 # Commands:
-#
-#   GET http://HUBOT_URL:PORT/meraki
-#   POST http://HUBOT_URL:PORT/meraki
-#
 # Notes:
-#   Requires http listening.
-#   Add `export PORT=8080` to `bin/hubot` config
-#   Be sure to set environmental variables for
-#   `MERAKI_SECRET` and `MERAKI_VALIDATOR`
-#   https://docs.meraki.com/display/MR/Location+API
-#
 # Author:
-#   phlco
-#   Adapted from https://docs.meraki.com/download/attachments/12255364/merakiReceiver.js.zip?version=1&modificationDate=1369861796512&api=v2
-#   https://coderwall.com/p/awus5w
 
 _ = require "underscore"
 
