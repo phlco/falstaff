@@ -22,6 +22,7 @@
   "dependencies": {
     "cheerio": "^0.16.0",
     "github": "^0.1.16",
+    "githubot": "^1.0.0-beta2",
     "gitio": "^1.0.1",
     "google-spreadsheet": "^0.2.8",
     "hubot": ">= 2.6.0 < 3.0.0",
