@@ -33,3 +33,18 @@ module.exports = (robot) ->
 
   robot.respond /office hours/i, (msg) ->
     msg.send important_dates.office_hours.join('\n')
+
+  robot.respond /d(ates)? vacation/i, (msg) ->
+    msg.send important_dates.days_off.join('\n')
+
+  robot.respond /d(ates)? office hours/i, (msg) ->
+    msg.send important_dates.office_hours.join('\n')
+
+  robot.respond /d(ates)? labs/i, (msg) ->
+
+  robot.respond /d(ates)? first day/i, (msg) ->
+    msg.send important_dates.first_day
+
+  robot.respond /d(ates)? last day/i, (msg) ->
+    msg.send important_dates.last_day
+
