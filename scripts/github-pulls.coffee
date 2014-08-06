@@ -23,6 +23,7 @@
 #
 # Author:
 #   jingweno
+
 env = require('node-env-file')
 
 module.exports = (robot) ->
