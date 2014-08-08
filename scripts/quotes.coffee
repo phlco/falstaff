@@ -12,6 +12,7 @@
 #   h4w5
 
 _      = require 'underscore'
+
 quotes = [
   'I would my means were greater, and my waist slenderer.',
   'Boy, tell him I am deaf.',
