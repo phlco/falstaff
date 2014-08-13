@@ -53,8 +53,8 @@ module.exports = (robot) ->
     else
       queueStudent name, reason
       msg.send "Current queue is: #{stringifyQueue()}"
-      # TODO phlco add in TA jid
-      private_message(user, "private message received")
+      robot.message 453968, "#{name} queued up"
+
 
   robot.respond /unq(ueue)? me/i, (msg) ->
     name = msg.message.user.mention_name || msg.message.user.name
@@ -97,9 +97,3 @@ module.exports = (robot) ->
     _.each robot.brain.data.instructorQueuePops, (student) ->
       res.write "#{student.name} queued for #{student.reason} at #{tfmt student.queuedAt} popped at #{tfmt student.poppedAt} by #{student.poppedBy || 'nobody'}<br/>"
     res.end()
-
-
-# TODO phlco replace user with TA jid
-private_message = (user, strings...) ->
-  for str in strings
-    robot.message 453968, str
