@@ -53,7 +53,8 @@ module.exports = (robot) ->
     else
       queueStudent name, reason
       msg.send "Current queue is: #{stringifyQueue()}"
-      robot.message 453968, "#{name} queued up"
+    console.log(user)
+    robot.message 453968, "#{name} queued up"
 
 
   robot.respond /unq(ueue)? me/i, (msg) ->
