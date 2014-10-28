@@ -15,6 +15,7 @@ module.exports = (robot) ->
 
   # this is configured at
   # https://github.com/ga-students/godot_instructors/settings/hooks/3318009
+  # may change these to individual hooks for push etc
   robot.router.post '/postreceive', (req, res) ->
     try
       payload = req.body or req
