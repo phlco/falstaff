@@ -5,13 +5,14 @@
 # Author:
 
 module.exports = (robot) ->
+
   robot.router.post '/postreceive', (req, res) ->
     data   = req.body
-    console.log data
-    # robot.emit "post", req
-    res.writeHead 201, {'Content-Type': 'application/json'}
-    res.end({msg: "notfication processed"})
+    console.log data.zen
+    robot.emit "post", data
+    # res.status(201).send('Response received')
+    res.status(201).json({ status: '201' })
 
-  # robot.on "post", (event) ->
-  #   console.log("event", event);
-  #   robot.messageRoom("39979_gildy@conf.hipchat.com", "message")
+  robot.on "post", (event) ->
+    console.log("event", event.zen);
+    # robot.messageRoom("39979_gildy@conf.hipchat.com", "message")

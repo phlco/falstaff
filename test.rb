@@ -143,6 +143,6 @@ def hit
       :body    => GITHUB_PAYLOAD.to_json,
       :headers => { 'Content-Type' => 'application/json' }
       )
-  response
 end
+
 binding.pry
