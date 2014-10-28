@@ -38,7 +38,8 @@ module.exports = (robot) ->
       # robot.messageRoom("39979_tinkerers@conf.hipchat.com", msg)
       params = {
         # room: 561124 # xmpp_jid = "39979_tinkerers@conf.hipchat.com"
-        room: 743754 # xmpp_jid = "39979_gildy@conf.hipchat.com"
+        # room: 743754 # xmpp_jid = "39979_gildy@conf.hipchat.com"
+        room: 910040 # xmpp_jid = "39979_godot@conf.hipchat.com"
         from: 'GitHub'
         message: msg
         color: 'yellow'
