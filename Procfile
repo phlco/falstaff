@@ -1,1 +1,1 @@
-web: bin/hubot --adapter hipchat --name Falstaff
+web: bin/hubot --adapter hipchat --name Falstaff --port $PORT
