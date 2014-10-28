@@ -11,7 +11,7 @@ module.exports = (robot) ->
 
   robot.router.post '/postreceive', (req, res) ->
     try
-      data = req.body
+      data = req.body or req
       robot.emit "post", data
       # res.status(201).send('Response received')
       res.status(201).json({ status: '201' })
