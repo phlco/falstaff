@@ -13,9 +13,12 @@ module.exports = (robot) ->
     HC.listRooms (data) ->
       console.log(data)
 
+  # this is configured at
+  # https://github.com/ga-students/godot_instructors/settings/hooks/3318009
   robot.router.post '/postreceive', (req, res) ->
     try
       payload = req.body or req
+      console.log(payload)
       robot.emit "post", payload
       res.status(201).json({ status: '201' })
     catch error
