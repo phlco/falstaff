@@ -6,7 +6,9 @@
 
 module.exports = (robot) ->
   robot.router.post '/postreceive', (req, res) ->
-    console.log("github notification", req)
-    robot.messageRoom "39979_tinkerers@conf.hipchat.com", req.zen
+    console.log("post received", req.body.zen)
+    robot.messageRoom "39979_tinkerers@conf.hipchat.com", req.body.zen
     res.writeHead 201, {'Content-Type': 'text/plain'}
     res.end()
+
+
