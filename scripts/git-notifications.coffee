@@ -12,7 +12,7 @@ module.exports = (robot) ->
   robot.router.post '/postreceive', (req, res) ->
     try
       payload = req.body or req
-      robot.emit "post", data
+      robot.emit "post", payload
       res.status(201).json({ status: '201' })
     catch error
       console.log(error)
@@ -20,7 +20,7 @@ module.exports = (robot) ->
 
   robot.on "post", (payload) ->
     try
-      msg = "#{sender.login} pushed to #{repository.name} <img src=\"#{sender.avatar_url}\">"
+      msg = "#{payload.sender.login} pushed to #{payload.repository.name} <img src=\"#{payload.sender.avatar_url}\">"
       robot.messageRoom("39979_tinkerers@conf.hipchat.com", msg)
       # robot.send payload.sender.login, "#{payload.sender.login} Will now deploy!"
     catch error
