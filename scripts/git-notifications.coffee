@@ -6,6 +6,9 @@
 
 module.exports = (robot) ->
 
+  robot.router.get '/', (req, res) ->
+    res.send "Good Morrow!"
+
   robot.router.post '/postreceive', (req, res) ->
     try
       data = req.body
