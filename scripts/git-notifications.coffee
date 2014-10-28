@@ -23,9 +23,11 @@ module.exports = (robot) ->
       res.end()
 
   robot.on "post", (payload) ->
+    # hubot doesn't do HTML formatting so
+    # Sending the message with the hipchat API
     try
       sender = payload.sender
-      repo = payload.repository
+      repo   = payload.repository
       # CoffeeScript Heredoc!
       msg = """
         <a href="#{sender.html_url}">
@@ -35,8 +37,9 @@ module.exports = (robot) ->
       """
       # robot.messageRoom("39979_tinkerers@conf.hipchat.com", msg)
       params = {
-        room: 561124 # xmpp_jid = "39979_tinkerers@conf.hipchat.com"
-        from: 'GitHub' # owner_id 361571
+        # room: 561124 # xmpp_jid = "39979_tinkerers@conf.hipchat.com"
+        room: 743754 # xmpp_jid = "39979_gildy@conf.hipchat.com"
+        from: 'GitHub'
         message: msg
         color: 'yellow'
       }
