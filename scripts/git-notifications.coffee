@@ -24,11 +24,13 @@ module.exports = (robot) ->
 
   robot.on "post", (payload) ->
     try
-      msg = "#{payload.sender.login} pushed to #{payload.repository.name} <img src=\"#{payload.sender.avatar_url}\">"
+      sender = payload.sender
+      repo = payload.repository
+      msg = "<a href=\"#{sender.html_url}\">#{sender.login}</a> pushed to <a href=\"#{repo.html_url}\">#{repo.name}</a>"
       # robot.messageRoom("39979_tinkerers@conf.hipchat.com", msg)
       params = {
         room: 561124 # xmpp_jid = "39979_tinkerers@conf.hipchat.com"
-        from: 'GitHubNotifier' # owner_id 361571
+        from: 'GitHub' # owner_id 361571
         message: msg
         color: 'yellow'
       }
