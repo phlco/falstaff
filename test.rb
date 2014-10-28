@@ -1,10 +1,8 @@
-url_string = "http://localhost:8080/postreceive"
 require 'pry'
 require 'httparty'
 require 'json'
 
-@result = HTTParty.post(url_string,
-    :body => {
+GITHUB_PAYLOAD = {
   "zen" => "Speak like a human.",
   "hook_id" => 3318009,
   "hook" => {
@@ -136,7 +134,15 @@ require 'json'
     "type" => "User",
     "site_admin" => false
   }
-}.to_json,
-    :headers => { 'Content-Type' => 'application/json' } )
+}
 
+def hit
+  url_string = "http://localhost:8080/postreceive"
+  response = HTTParty.post(
+      url_string,
+      :body    => GITHUB_PAYLOAD.to_json,
+      :headers => { 'Content-Type' => 'application/json' }
+      )
+  response
+end
 binding.pry

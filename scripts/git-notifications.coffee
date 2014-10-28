@@ -6,10 +6,11 @@
 
 module.exports = (robot) ->
   robot.router.post '/postreceive', (req, res) ->
-    console.log req
+    data   = req.body
+    console.log data
     # robot.emit "post", req
-    res.writeHead 201, {'Content-Type': 'text/plain'}
-    res.end()
+    res.writeHead 201, {'Content-Type': 'application/json'}
+    res.end({msg: "notfication processed"})
 
   # robot.on "post", (event) ->
   #   console.log("event", event);
