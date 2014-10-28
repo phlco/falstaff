@@ -6,9 +6,8 @@
 
 module.exports = (robot) ->
   robot.router.post '/postreceive', (req, res) ->
-    console.log("post headers", req.headers)
-    console.log("post body", req.body)
-    robot.emit "post", req.body
+    console.log req
+    robot.emit "post", req
     res.writeHead 201, {'Content-Type': 'text/plain'}
     res.end()
 
