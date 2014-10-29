@@ -19,7 +19,8 @@ module.exports = (robot) ->
   robot.router.post '/postreceive', (req, res) ->
     try
       payload = req.body or req
-      console.log(payload)
+      eventType = req.headers['X-GitHub-Event']
+      console.log(eventType)
       robot.emit "post", payload
       res.status(201).json({ status: '201' })
     catch error

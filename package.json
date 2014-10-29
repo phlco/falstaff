@@ -36,5 +36,10 @@
   "engines": {
     "node": "0.10.28",
     "npm": "1.4.13"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-curl": "^2.0.3",
+    "request": "^2.47.0"
   }
 }
