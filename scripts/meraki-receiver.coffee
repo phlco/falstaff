@@ -22,10 +22,8 @@ module.exports = (robot) ->
 
   # When it sends the presence information, it will also send the secret.
   robot.router.post '/meraki', (req, res) ->
+    # Version 2 of the API sends back JSON
     try
-      # req.body => {version: "1.0", secret: "y7WALfkjPfQMgtXZtW", probing: Array[46]}
-      # payload = JSON.parse(req.body.data)
-      # 'content-type': 'application/json',
       if req.body.secret is secret
         robot.emit("valid-meraki-data", req.body.data)
       else
@@ -37,12 +35,14 @@ module.exports = (robot) ->
       res.end()
 
   robot.on "valid-meraki-data", (payload) ->
-    # ga_guests = _.filter(payload, (guest) -> guest.ssid is "GA-Guest")
     ga_guests = _.filter(payload.observations, (guest) -> guest.ssid is "GA-Guest")
     # console.log(ga_guests)
     # seenTime Observation time in UTC;
     # seenEpoch Observation time in seconds since the UNIX epoch
-    # clientMac
     mac_addresses = ['28:cf:da:ed:b8:24', '58:b0:35:7f:2e:ca', '5c:f9:38:ac:91:50']
     wdi_students = _.filter(ga_guests, (guest) -> _.contains(mac_addresses, guest.clientMac))
     console.log(wdi_students)
+    _.each(wdi_students, (student) ->
+      date = new Date(student.seenTime).toLocaleDateString()
+      redis.brain.set("attendance:#{date}:#{student.clientMac}", "present")
+    )
