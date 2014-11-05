@@ -37,6 +37,7 @@ module.exports = (robot) ->
     msg.emote "Fetching attendance for today, #{today}"
     client.keys("attendance:#{today}:*", (err, mac_addresses) ->
       console.log(mac_addresses.length)
+      msg.send("inner function")
     )
     # for mac_address in mac_addresses
       # msg.send mac_address
