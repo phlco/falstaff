@@ -3,5 +3,6 @@
   "help",
   "greet",
   "random-student",
-  "git-notifications"
+  "git-notifications",
+  "attendance"
 ]

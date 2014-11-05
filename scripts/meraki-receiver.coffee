@@ -4,7 +4,8 @@
 # Notes:
 # Author:
 
-_ = require "underscore"
+_      = require "underscore"
+moment = require 'moment'
 
 # Secret that you chose in the Meraki dashboard
 secret = process.env.MERAKI_SECRET
@@ -43,6 +44,6 @@ module.exports = (robot) ->
     wdi_students = _.filter(ga_guests, (guest) -> _.contains(mac_addresses, guest.clientMac))
     console.log(wdi_students)
     _.each(wdi_students, (student) ->
-      date = new Date(student.seenTime).toLocaleDateString()
+      date = moment(student.seenTime).format("YYYYMMDD")
       robot.brain.set("attendance:#{date}:#{student.clientMac}", "present")
     )
