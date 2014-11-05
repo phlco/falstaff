@@ -17,15 +17,12 @@ module.exports = (robot) ->
   # Meraki will send a HTTP GET request to test the URL
   # and expect to see the validator as a response.
   robot.router.get '/meraki', (req, res) ->
-    console.log("get to meraki")
-    console.log(secret)
-    console.log(validator)
     res.set('Content-Type', 'text/plain')
     res.send(200, validator)
 
   # When it sends the presence information, it will also send the secret.
   robot.router.post '/meraki', (req, res) ->
-    console.log("posting to meraki")
+    console.log(req)
     try
       # req.body => {version: "1.0", secret: "y7WALfkjPfQMgtXZtW", probing: Array[46]}
       payload = JSON.parse(req.body.data)
