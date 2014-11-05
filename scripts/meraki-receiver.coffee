@@ -44,5 +44,5 @@ module.exports = (robot) ->
     console.log(wdi_students)
     _.each(wdi_students, (student) ->
       date = new Date(student.seenTime).toLocaleDateString()
-      redis.brain.set("attendance:#{date}:#{student.clientMac}", "present")
+      robot.brain.set("attendance:#{date}:#{student.clientMac}", "present")
     )
