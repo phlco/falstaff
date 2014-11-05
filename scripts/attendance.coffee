@@ -38,13 +38,14 @@ module.exports = (robot) ->
     today = moment(student.seenTime).format("YYYYMMDD")
     msg.emote "Fetching attendance for today, #{today}"
 
-    client.keys("attendance:#{today}:*", (err, mac_addresses) ->
+    client.keys("attendance:*", (err, mac_addresses) ->
+    # client.keys("attendance:#{today}:*", (err, mac_addresses) ->
       console.log(mac_addresses.length)
-      client.quit()
       msg.send("inner function")
       _.each(mac_addresses, (mac_address) ->
         msg.send(mac_address)
       )
+      client.quit()
     )
 
   robot.respond /track/i, (msg) ->
