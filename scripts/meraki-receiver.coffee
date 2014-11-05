@@ -20,11 +20,8 @@ module.exports = (robot) ->
     console.log("get to meraki")
     console.log(secret)
     console.log(validator)
-    res.setHeader('Content-Type', 'text/plain')
-    res.writeHead 200
-    console.log("sending validation back")
-    res.send(validator)
-    res.end()
+    res.set('Content-Type', 'text/plain')
+    res.send(200, validator)
 
   # When it sends the presence information, it will also send the secret.
   robot.router.post '/meraki', (req, res) ->
@@ -38,7 +35,8 @@ module.exports = (robot) ->
       else
         console.log("invalid secret from #{req.connection.remoteAddress}")
     catch error
-      console.log("Error.", error)
+      console.log("Error.")
+      console.log(error)
       res.end()
 
   robot.on "valid-meraki-data", (payload) ->
