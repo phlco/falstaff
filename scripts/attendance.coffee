@@ -38,6 +38,7 @@ module.exports = (robot) ->
     today = moment(student.seenTime).format("YYYYMMDD")
     msg.emote "Fetching attendance for today, #{today}"
 
+    # not working...
     client.keys("attendance:*", (err, mac_addresses) ->
     # client.keys("attendance:#{today}:*", (err, mac_addresses) ->
       console.log(mac_addresses.length)
