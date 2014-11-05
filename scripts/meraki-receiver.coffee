@@ -6,6 +6,8 @@
 
 _      = require "underscore"
 moment = require 'moment'
+Url    = require "url"
+Redis  = require "redis"
 
 # Secret that you chose in the Meraki dashboard
 secret = process.env.MERAKI_SECRET
@@ -15,6 +17,8 @@ validator = process.env.MERAKI_VALIDATOR
 
 module.exports = (robot) ->
 
+  info   = Url.parse(process.env.REDISTOGO_URL) || process.env.BOXEN_REDIS_URL || 'redis://localhost:6379'
+  client = Redis.createClient(info.port, info.hostname)
   # Meraki will send a HTTP GET request to test the URL
   # and expect to see the validator as a response.
   robot.router.get '/meraki', (req, res) ->
@@ -45,5 +49,6 @@ module.exports = (robot) ->
     console.log(wdi_students)
     _.each(wdi_students, (student) ->
       date = moment(student.seenTime).format("YYYYMMDD")
-      robot.brain.set("attendance:#{date}:#{student.clientMac}", "present")
+      # robot.brain.set("attendance:#{date}:#{student.clientMac}", "present")
+      client.set("attendance:#{date}:#{student.clientMac}", "present")
     )
