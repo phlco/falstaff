@@ -17,8 +17,9 @@ module.exports = (robot) ->
   # Meraki will send a HTTP GET request to test the URL
   # and expect to see the validator as a response.
   robot.router.get '/meraki', (req, res) ->
+    res.setHeader('Content-Type', 'text/plain')
+    res.writeHead 200
     console.log("sending validation")
-    res.writeHead 200, {'Content-Type': 'text/plain'}
     res.send validator
 
   # When it sends the presence information, it will also send the secret.
