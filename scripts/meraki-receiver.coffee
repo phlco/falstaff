@@ -19,8 +19,7 @@ module.exports = (robot) ->
   robot.router.get '/meraki', (req, res) ->
     console.log("sending validation")
     res.writeHead 200, {'Content-Type': 'text/plain'}
-    res.end validator
-    # res.send(validator)
+    res.send validator
 
   # When it sends the presence information, it will also send the secret.
   robot.router.post '/meraki', (req, res) ->
@@ -29,20 +28,23 @@ module.exports = (robot) ->
       payload = JSON.parse(req.body.data)
       if payload.secret is secret
         console.log("valid data")
-        # console.log(payload) # array of mac addresses
-        # ap_mac: "00:18:0a:36:3b:42"
-        # client_mac: "4c:8d:79:e9:4a:dc"
-        # is_associated: "true"    # on GA guest or ed?
-        # last_seen: "Thu May 29 22:18:52.033 UTC 2014"
-        # rssi: "28"               # maximum signal strength
-        # TODO (phlco) use underscore to check for my mac address?
-        # find mac address if last seen is today then you're here
-        # user = _.findWhere(payload, { client_mac: "54:26:96:35:0B:C8"})
-        # if user?
-        #   console.log("Philco is here. Last seen #{user.last_seen}")
+        robot.emit("valid-meraki-data", payload)
       else
         console.log("invalid secret from #{req.connection.remoteAddress}")
     catch error
-      console.log("Error.")
-      console.log(error)
+      console.log("Error.", error)
       res.end()
+
+  robot.on "valid-meraki-data", (payload) ->
+    console.log(payload)
+    # console.log(payload) # array of mac addresses
+    # ap_mac: "00:18:0a:36:3b:42"
+    # client_mac: "4c:8d:79:e9:4a:dc"
+    # is_associated: "true"    # on GA guest or ed?
+    # last_seen: "Thu May 29 22:18:52.033 UTC 2014"
+    # rssi: "28"               # maximum signal strength
+    # TODO (phlco) use underscore to check for my mac address?
+    # find mac address if last seen is today then you're here
+    # user = _.findWhere(payload, { client_mac: "54:26:96:35:0B:C8"})
+    # if user?
+    #   console.log("Philco is here. Last seen #{user.last_seen}")
