@@ -50,5 +50,5 @@ module.exports = (robot) ->
     _.each(wdi_students, (student) ->
       date = moment(student.seenTime).format("YYYYMMDD")
       # robot.brain.set("attendance:#{date}:#{student.clientMac}", "present")
-      client.set("attendance:#{date}:#{student.clientMac}", "present")
+      client.set("attendance:#{date}:#{student.clientMac}", "present", Redis.print)
     )
