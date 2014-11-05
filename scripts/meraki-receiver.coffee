@@ -27,7 +27,6 @@ module.exports = (robot) ->
       # payload = JSON.parse(req.body.data)
       # 'content-type': 'application/json',
       if req.body.secret is secret
-        console.log("valid data")
         robot.emit("valid-meraki-data", req.body.data)
       else
         console.log("invalid secret from #{req.connection.remoteAddress}")
@@ -39,18 +38,11 @@ module.exports = (robot) ->
 
   robot.on "valid-meraki-data", (payload) ->
     # ga_guests = _.filter(payload, (guest) -> guest.ssid is "GA-Guest")
-    ga_guests = _.filter(payload.observations, (guest) ->
-      guest.ssid is "GA-Guest"
-    )
-    console.log(ga_guests)
-    # console.log(payload) # array of mac addresses
-    # ap_mac: "00:18:0a:36:3b:42"
-    # client_mac: "4c:8d:79:e9:4a:dc"
-    # is_associated: "true"    # on GA guest or ed?
-    # last_seen: "Thu May 29 22:18:52.033 UTC 2014"
-    # rssi: "28"               # maximum signal strength
-    # TODO (phlco) use underscore to check for my mac address?
-    # find mac address if last seen is today then you're here
-    # user = _.findWhere(payload, { client_mac: "54:26:96:35:0B:C8"})
-    # if user?
-    #   console.log("Philco is here. Last seen #{user.last_seen}")
+    ga_guests = _.filter(payload.observations, (guest) -> guest.ssid is "GA-Guest")
+    # console.log(ga_guests)
+    # seenTime Observation time in UTC;
+    # seenEpoch Observation time in seconds since the UNIX epoch
+    # clientMac
+    mac_addresses = ['28:cf:da:ed:b8:24', '58:b0:35:7f:2e:ca', '5c:f9:38:ac:91:50']
+    wdi_students = _.filter(ga_guests, (guest) -> _.contains(mac_addresses, guest.clientMac)
+    console.log(wdi_students)
