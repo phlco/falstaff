@@ -44,5 +44,5 @@ module.exports = (robot) ->
     # seenEpoch Observation time in seconds since the UNIX epoch
     # clientMac
     mac_addresses = ['28:cf:da:ed:b8:24', '58:b0:35:7f:2e:ca', '5c:f9:38:ac:91:50']
-    wdi_students = _.filter(ga_guests, (guest) -> _.contains(mac_addresses, guest.clientMac)
+    wdi_students = _.filter(ga_guests, (guest) -> _.contains(mac_addresses, guest.clientMac))
     console.log(wdi_students)
