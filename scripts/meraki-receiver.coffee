@@ -22,13 +22,13 @@ module.exports = (robot) ->
 
   # When it sends the presence information, it will also send the secret.
   robot.router.post '/meraki', (req, res) ->
-    console.log(req)
     try
       # req.body => {version: "1.0", secret: "y7WALfkjPfQMgtXZtW", probing: Array[46]}
-      payload = JSON.parse(req.body.data)
-      if payload.secret is secret
+      # payload = JSON.parse(req.body.data)
+      # 'content-type': 'application/json',
+      if req.body.secret is secret
         console.log("valid data")
-        robot.emit("valid-meraki-data", payload)
+        robot.emit("valid-meraki-data", req.body.data)
       else
         console.log("invalid secret from #{req.connection.remoteAddress}")
     catch error
