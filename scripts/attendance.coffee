@@ -1,8 +1,14 @@
+# Description:
+# Dependencies:
+# Commands:
+# Notes:
+# Author:
+
 # attendance is set in meraki-receiver like so:
 # robot.brain.set("attendance:#{date}:#{student.clientMac}", "present")
-moment = require 'moment'
-Url    = require "url"
-Redis  = require "redis"
+moment = require('moment')
+Url    = require("url")
+Redis  = require("redis")
 
 # guest =
 #   ipv4: "/10.243.142.81"
@@ -29,8 +35,8 @@ module.exports = (robot) ->
   robot.respond /attendance/, (msg) ->
     today = moment().format("YYYYMMDD")
     msg.emote "Fetching attendance for today, #{today}"
-    client.keys("*attendance:#{today}*", (err, mac_addresses) ->
-      msg.send "#{mac_addresses.length} Results"
+    client.keys("attendance:#{today}:*", (err, mac_addresses) ->
+      console.log(mac_addresses.length)
     )
     # for mac_address in mac_addresses
       # msg.send mac_address
