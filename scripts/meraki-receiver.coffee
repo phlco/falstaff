@@ -17,23 +17,26 @@ module.exports = (robot) ->
   # Meraki will send a HTTP GET request to test the URL
   # and expect to see the validator as a response.
   robot.router.get '/meraki', (req, res) ->
+    console.log("get to meraki")
     res.setHeader('Content-Type', 'text/plain')
     res.writeHead 200
-    console.log("sending validation")
+    console.log("sending validation back")
     res.send validator
+    res.end()
 
   # When it sends the presence information, it will also send the secret.
   robot.router.post '/meraki', (req, res) ->
-    try
-      # req.body => {version: "1.0", secret: "y7WALfkjPfQMgtXZtW", probing: Array[46]}
-      payload = JSON.parse(req.body.data)
-      if payload.secret is secret
-        console.log("valid data")
-        robot.emit("valid-meraki-data", payload)
-      else
-        console.log("invalid secret from #{req.connection.remoteAddress}")
-    catch error
-      console.log("Error.", error)
+    console.log("posting to meraki")
+    # try
+    #   # req.body => {version: "1.0", secret: "y7WALfkjPfQMgtXZtW", probing: Array[46]}
+    #   payload = JSON.parse(req.body.data)
+    #   if payload.secret is secret
+    #     console.log("valid data")
+    #     robot.emit("valid-meraki-data", payload)
+    #   else
+    #     console.log("invalid secret from #{req.connection.remoteAddress}")
+    # catch error
+    #   console.log("Error.", error)
       res.end()
 
   robot.on "valid-meraki-data", (payload) ->
