@@ -38,8 +38,8 @@ module.exports = (robot) ->
       res.end()
 
   robot.on "valid-meraki-data", (payload) ->
-    ga_guests = _.filter(payload, (guest) -> guest.ssid is "GA-Guest")
-    console.log(ga_guests)
+    # ga_guests = _.filter(payload, (guest) -> guest.ssid is "GA-Guest")
+    console.log(payload)
     # console.log(payload) # array of mac addresses
     # ap_mac: "00:18:0a:36:3b:42"
     # client_mac: "4c:8d:79:e9:4a:dc"
