@@ -29,7 +29,8 @@ module.exports = (robot) ->
   robot.respond /attendance/, (msg) ->
     today = moment().format("YYYYMMDD")
     msg.emote "Fetching attendance for today, #{today}"
-    mac_addresses = client.keys("*attendance:#{today}*")
-    msg.send "#{mac_addresses.length} Results"
+    client.keys("*attendance:#{today}*", (err, mac_addresses) ->
+      msg.send "#{mac_addresses.length} Results"
+    )
     # for mac_address in mac_addresses
       # msg.send mac_address
