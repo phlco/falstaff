@@ -18,7 +18,11 @@ validator = process.env.MERAKI_VALIDATOR
 module.exports = (robot) ->
   Redis.debug_mode = true
   info   = Url.parse(process.env.REDISTOGO_URL) || process.env.REDISCLOUD_URL || 'redis://localhost:6379'
-  client = Redis.createClient(info.port, info.hostname)
+  client = Redis.createClient(info.port, info.hostname, {
+    retry_max_delay: 5000
+    connect_timeout: 5000
+    max_attempts: 4
+  })
 
   # Meraki will send a HTTP GET request to test the URL
   # and expect to see the validator as a response.
