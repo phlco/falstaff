@@ -16,13 +16,13 @@ validator = process.env.MERAKI_VALIDATOR
 
 
 module.exports = (robot) ->
-  Redis.debug_mode = true
   info   = Url.parse(process.env.REDISTOGO_URL) || process.env.REDISCLOUD_URL || 'redis://localhost:6379'
-  client = Redis.createClient(info.port, info.hostname, {
-    retry_max_delay: 5000
-    connect_timeout: 5000
-    max_attempts: 4
-  })
+  unless robot.redisClient?
+    robot.redisClient = Redis.createClient(info.port, info.hostname, {
+      retry_max_delay: 5000
+      connect_timeout: 5000
+      max_attempts: 4
+    })
 
   # Meraki will send a HTTP GET request to test the URL
   # and expect to see the validator as a response.
@@ -55,5 +55,5 @@ module.exports = (robot) ->
     for student in wdi_students
       date = moment(student.seenTime).format("YYYYMMDD")
       # robot.brain.set("attendance:#{date}:#{student.clientMac}", "present")
-      client.sadd("attendance:#{date}", student.clientMac, Redis.print)
+      robot.redisClient.sadd("attendance:#{date}", student.clientMac, Redis.print)
       console.log(student.clientMac)
