@@ -39,7 +39,7 @@ module.exports = (robot) ->
     console.log(client)
     msg.send JSON.stringify(client.connectionOption)
     msg.send client.selected_db
-    client.keys("*", () ->
+    client.smembers("attendance:#{today}", () ->
       msg.send arguments
       console.log(arguments)
     )
