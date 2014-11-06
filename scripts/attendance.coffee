@@ -33,14 +33,15 @@ module.exports = (robot) ->
   info   = Url.parse(process.env.REDISTOGO_URL) || process.env.BOXEN_REDIS_URL || 'redis://localhost:6379'
   client = Redis.createClient(info.port, info.hostname)
 
-  robot.respond /attendance/, (msg) ->
+  robot.respond /attendance /, (msg) ->
     today = moment().format("YYYYMMDD")
     # date = moment().format("YYYYMMDD")
     date = moment(student.seenTime).format("YYYYMMDD")
-    msg.emote "Fetching attendance for today, #{today}"
+    # msg.emote "Fetching attendance for today, #{today}"
     client.smembers("attendance:#{date}", (err, members) ->
-      for member in members
-        msg.send member
+      msg.send "Number of entries: #{members.length}"
+      # for member in members
+      #   msg.send member
     )
 
   robot.respond /track/i, (msg) ->
