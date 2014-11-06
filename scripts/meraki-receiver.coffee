@@ -6,8 +6,8 @@
 
 _      = require "underscore"
 moment = require 'moment'
-Url    = require "url"
-Redis  = require "redis"
+Url    = require("url")
+Redis  = require("redis")
 
 # Secret that you chose in the Meraki dashboard
 secret = process.env.MERAKI_SECRET
@@ -15,7 +15,7 @@ secret = process.env.MERAKI_SECRET
 # Validator string that is shown in the Meraki dashboard
 validator = process.env.MERAKI_VALIDATOR
 
-info   = Url.parse(process.env.REDISTOGO_URL) || process.env.BOXEN_REDIS_URL || 'redis://localhost:6379'
+info   = Url.parse(process.env.REDISTOGO_URL) || process.env.REDISCLOUD_URL || 'redis://localhost:6379'
 client = Redis.createClient(info.port, info.hostname)
 
 module.exports = (robot) ->
