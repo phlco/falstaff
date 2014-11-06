@@ -13,7 +13,11 @@ _      = require("underscore")
 
 module.exports = (robot) ->
   info   = Url.parse(process.env.REDISTOGO_URL) || 'redis://localhost:6379'
-  client = Redis.createClient(info.port, info.hostname)
+  client = Redis.createClient(info.port, info.hostname, {
+    retry_max_delay: 5000
+    connect_timeout: 5000
+    max_attempts: 4
+  })
 
   robot.respond /attendance/i, (msg) ->
     today = moment().format("YYYYMMDD")
@@ -25,6 +29,9 @@ module.exports = (robot) ->
     )
 
   robot.respond /track/i, (msg) ->
+    client = Redis.createClient(info.port, info.hostname)
     date = moment(student.seenTime).format("YYYYMMDD")
     client.sadd("attendance:#{date}", student.clientMac)
     msg.send("added")
+
+
