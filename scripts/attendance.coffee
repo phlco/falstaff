@@ -35,10 +35,8 @@ module.exports = (robot) ->
 
   robot.respond /attendance/i, (msg) ->
     today = moment().format("YYYYMMDD")
-    # date = moment().format("YYYYMMDD")
-    date = moment(student.seenTime).format("YYYYMMDD")
-    # msg.emote "Fetching attendance for today, #{today}"
-    client.smembers("attendance:#{date}", (err, members) ->
+    msg.emote "Fetching attendance for today, #{today}"
+    client.smembers("attendance:#{today}", (err, members) ->
       msg.send "Number of entries: #{members.length}"
       # for member in members
       #   msg.send member
