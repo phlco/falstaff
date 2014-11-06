@@ -15,10 +15,11 @@ secret = process.env.MERAKI_SECRET
 # Validator string that is shown in the Meraki dashboard
 validator = process.env.MERAKI_VALIDATOR
 
+info   = Url.parse(process.env.REDISTOGO_URL) || process.env.BOXEN_REDIS_URL || 'redis://localhost:6379'
+client = Redis.createClient(info.port, info.hostname)
+
 module.exports = (robot) ->
 
-  info   = Url.parse(process.env.REDISTOGO_URL) || process.env.BOXEN_REDIS_URL || 'redis://localhost:6379'
-  client = Redis.createClient(info.port, info.hostname)
   # Meraki will send a HTTP GET request to test the URL
   # and expect to see the validator as a response.
   robot.router.get '/meraki', (req, res) ->
@@ -47,8 +48,7 @@ module.exports = (robot) ->
     mac_addresses = ['28:cf:da:ed:b8:24', '58:b0:35:7f:2e:ca', '5c:f9:38:ac:91:50']
     wdi_students = _.filter(ga_guests, (guest) -> _.contains(mac_addresses, guest.clientMac))
     console.log(wdi_students)
-    _.each(wdi_students, (student) ->
+    for student in wdi_students
       date = moment(student.seenTime).format("YYYYMMDD")
       # robot.brain.set("attendance:#{date}:#{student.clientMac}", "present")
-      client.set("attendance:#{date}:#{student.clientMac}", "present", Redis.print)
-    )
+      client.sadd("attendance:#{date}", student.clientMac)

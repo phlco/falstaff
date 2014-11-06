@@ -10,6 +10,8 @@ moment = require('moment')
 Url    = require("url")
 Redis  = require("redis")
 _      = require("underscore")
+info   = Url.parse(process.env.REDISTOGO_URL) || 'redis://localhost:6379'
+client = Redis.createClient(info.port, info.hostname)
 
 student =
   ipv4: "/10.243.142.81"
@@ -30,10 +32,8 @@ student =
   manufacturer: "Apple"
 
 module.exports = (robot) ->
-  info   = Url.parse(process.env.REDISTOGO_URL) || process.env.BOXEN_REDIS_URL || 'redis://localhost:6379'
-  client = Redis.createClient(info.port, info.hostname)
 
-  robot.respond /attendance /, (msg) ->
+  robot.respond /attendance/i, (msg) ->
     today = moment().format("YYYYMMDD")
     # date = moment().format("YYYYMMDD")
     date = moment(student.seenTime).format("YYYYMMDD")
