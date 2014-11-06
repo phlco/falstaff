@@ -34,22 +34,16 @@ module.exports = (robot) ->
   client = Redis.createClient(info.port, info.hostname)
 
   robot.respond /attendance/, (msg) ->
-    # today = moment().format("YYYYMMDD")
-    today = moment(student.seenTime).format("YYYYMMDD")
+    today = moment().format("YYYYMMDD")
+    # date = moment().format("YYYYMMDD")
+    date = moment(student.seenTime).format("YYYYMMDD")
     msg.emote "Fetching attendance for today, #{today}"
-
-    # not working...
-    client.keys("attendance:*", (err, mac_addresses) ->
-    # client.keys("attendance:#{today}:*", (err, mac_addresses) ->
-      console.log(mac_addresses.length)
-      msg.send("inner function")
-      _.each(mac_addresses, (mac_address) ->
-        msg.send(mac_address)
-      )
-      client.quit()
+    client.smembers("attendance:#{date}", (err, members) ->
+      for member in members
+        msg.send member
     )
 
   robot.respond /track/i, (msg) ->
     date = moment(student.seenTime).format("YYYYMMDD")
-    client.set("attendance:#{date}:#{student.clientMac}", "present")
+    client.sadd("attendance:#{date}", student.clientMac)
     msg.send("added")
