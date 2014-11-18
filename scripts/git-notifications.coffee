@@ -3,8 +3,9 @@
 # Commands:
 # Notes:
 # Author:
+
 hipchat = require('node-hipchat')
-HC = new hipchat('94f92ca23f75a2b38fa38ed847a221')
+HC = new hipchat(process.env.HIPCHAT_ADMIN_API_TOKEN)
 
 module.exports = (robot) ->
 
